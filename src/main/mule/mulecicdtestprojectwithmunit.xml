@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="0a8c342f-be1e-40f4-9cde-c8dba24e7165" >
+		<http:listener-connection host="0.0.0.0" port="8082" />
+	</http:listener-config>
+	<sub-flow name="AssignData" doc:id="789f12d5-1baa-4ce2-9e7c-4fcec818251e" >
+		<set-variable value="TEST123" doc:name="Set Variable" doc:id="6f801d70-d461-4960-9c94-d68d7dd2c404" variableName="TestVariable" />
+		<set-payload value='#[vars.TestVariable]' doc:name="Set Payload" doc:id="3e9379a1-0f25-491c-aa71-881358fa7150" />
+	</sub-flow>
+	<flow name="mulecicdtestprojectwithmunitFlow" doc:id="b90609c6-f56f-4b37-b8dc-ed054a27257d" >
+		<http:listener doc:name="Listener" doc:id="965dfc7a-7946-4818-9c7b-e16bb4e3814c" config-ref="HTTP_Listener_config" path="/CheckCICDApplication"/>
+		<flow-ref doc:name="Flow Reference" doc:id="e79d63d6-0640-4bf7-a24e-aab0c6ae0c47" name="AssignData" />
+	</flow>
+</mule>

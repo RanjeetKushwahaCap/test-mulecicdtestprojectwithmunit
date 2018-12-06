@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="mulecicdtestprojectwithmunit-test-suite.xml" />
+	<munit:test name="mulecicdtestprojectwithmunit-test-suite-AssignDataTest" description="Test" doc:id="e6aafec4-2fbb-477a-966b-a68469407771" >
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to AssignData" doc:id="30babdb2-fa4b-4e6c-9990-29909bbea676" name="AssignData"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="58f1fca1-a064-48c8-9df0-94dcd9dda50b" expression="#[payload]" is="#[MunitTools::notNullValue()]" message="Payload String is Null"></munit-tools:assert-that>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mulecicdtestprojectwithmunit-test-suite-mulecicdtestprojectwithmunitFlowTest" description="Test" doc:id="ac0184b5-42d3-464e-a18b-fd5d977bf094" >
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to mulecicdtestprojectwithmunitFlow" doc:id="8de6d8e7-bfb3-483a-8a3d-f4301ea5a6f2" name="mulecicdtestprojectwithmunitFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="e7520c8b-2aea-408a-9c90-137efb3ac6b6"  expression="#[payload]" is="#[MunitTools::notNullValue()]" message="The message passed was not Hello World"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
